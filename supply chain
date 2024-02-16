@@ -1,0 +1,49 @@
+import math
+
+def calculate_eoq(demand_rate, ordering_cost, holding_cost):
+    """
+    Calculate Economic Order Quantity (EOQ) using the classical formula.
+    
+    Parameters:
+        demand_rate (float): Demand rate (units per time period).
+        ordering_cost (float): Cost per order.
+        holding_cost (float): Holding cost per unit per time period.
+        
+    Returns:
+        float: Economic Order Quantity (EOQ).
+    """
+    eoq = math.sqrt((2 * demand_rate * ordering_cost) / holding_cost)
+    return eoq
+
+def calculate_total_cost(eoq, demand_rate, ordering_cost, holding_cost):
+    """
+    Calculate the total cost associated with the EOQ model.
+    
+    Parameters:
+        eoq (float): Economic Order Quantity (units).
+        demand_rate (float): Demand rate (units per time period).
+        ordering_cost (float): Cost per order.
+        holding_cost (float): Holding cost per unit per time period.
+        
+    Returns:
+        float: Total cost.
+    """
+    total_cost = (demand_rate * ordering_cost) / eoq + (eoq * holding_cost) / 2
+    return total_cost
+
+def main():
+    # Example parameters
+    demand_rate = 1000  # units per year
+    ordering_cost = 100  # cost per order
+    holding_cost = 5  # holding cost per unit per year
+
+    # Calculate EOQ
+    eoq = calculate_eoq(demand_rate, ordering_cost, holding_cost)
+    print("Economic Order Quantity (EOQ):", eoq)
+
+    # Calculate total cost
+    total_cost = calculate_total_cost(eoq, demand_rate, ordering_cost, holding_cost)
+    print("Total Cost:", total_cost)
+
+if __name__ == "__main__":
+    main()
